@@ -69,4 +69,68 @@ db<-setNames(db,names)
 ```
 
 ### Question 2
+To extract from the previous data set only the measurements on the mean and standard deviation for each measurement I use the *grep()* function and a code [[:punct:]]. The grep() functions allows me to select a stryng form the variables names. The function allows for bolean operators. The [[:punct:]] indicates that R should pick anything that has puntuation on it after the specified string. 
+
+
+```r
+db<-db[, grep("id|class|mean[[:punct:]]|std[[:punct:]])",names(db))]  
+names(db)
+```
+The data base contains 68 variables and 10299 observations, the id variable and class variable are factors for the subjects and the different measured activities respectively, and the remaining 66 are the the measurements on the mean and standard deviation for each measurement. Mean() indicates mean, and std() is standard deviation. 
+
+### Question 3
+The descriptive activity names are in the previously created data frame *act* (see question 1 step b), which is used to name the activities in the data set. 
+```R
+library(plyr)
+names<-c("class","class_ft")
+act<-setNames(act,names)
+db<-arrange(join(db,act),class); names(db)
+#Rearrenge data set 
+db<-db[c("class_ft",names(db[-69]))]; names(db)
+class(db$class_ft) #"factor"
+```
+The variable *class_ft* contains the name of each activity. Notice that I check weather the *class_ft* variable (that contains the name of the factor class) is actually a factor variable. 
+
+### Question 4
+
+Since from Question 1 I have been working with a lebeled data set we only need to check wether the variable names are descriptive. 
+
+```
+names(db)
+```
+
+### Question 5
+To create the tidy data set with the average of each variable for each activity and each subject I use the *dplyr* package. The group() functions groups the original data set into subject and activity and then using *summarise_each* I get the desired tidy data set. The *contain()* is a dplyr verb that selects the variables that contain the strings *mean()* and *std()*.   
+```r
+library(dplyr)
+fdb<-db%>%
+  group_by(id,class_ft)%>% 
+  summarise_each(funs(mean(.,na.rm=TRUE)),contains("mean()"),contains("std()")) 
+#na.rm=TRUE tells R to remove NA. The(.) is a shorcut for the dataset. 
+```
+### Final steps
+```r
+#Print data base
+write.table(fdb,file="tidy_dat.txt",row.names=FALSE)
+
+#Load data base to R. 
+data<-read.table("./tidy_dat.txt",header=TRUE)
+View(data)
+```
+
+## References
+### General resources
+
+* https://thoughtfulbloke.wordpress.com/2015/09/09/getting-and-cleaning-the-assignment/
+
+### grep()
+
+* http://stackoverflow.com/questions/24176448/subset-data-based-on-partial-match-of-column-names
+ 
+### dplyr resoruces
+
+* https://cran.r-project.org/web/packages/dplyr/dplyr.pdf
+* https://www.youtube.com/watch?v=jWjqLW-u3hc&feature=youtu.be
+* https://github.com/justmarkham/dplyr-tutorial/blob/master/dplyr-tutorial.Rmd
+
 

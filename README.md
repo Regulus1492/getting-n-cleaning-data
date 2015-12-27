@@ -127,7 +127,7 @@ View(data)
 
 * http://stackoverflow.com/questions/24176448/subset-data-based-on-partial-match-of-column-names
  
-### dplyr resoruces
+### dplyr resources
 
 * https://cran.r-project.org/web/packages/dplyr/dplyr.pdf
 * https://www.youtube.com/watch?v=jWjqLW-u3hc&feature=youtu.be

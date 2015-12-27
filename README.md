@@ -21,6 +21,9 @@ You should create one R script called run_analysis.R that does the following.
 
 ## Getting Started
 
+## Getting Started
+### **Required packages: plyr and dplyr**
+
 ### Question 1
 a. Set working directory (wd) that contains data base
 ```c++

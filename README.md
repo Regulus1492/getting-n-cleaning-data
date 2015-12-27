@@ -59,7 +59,7 @@ e. Combine Train and Test data sets into one data base using rbind
 ```r
 db<-rbind(Test, Train); dim(db) #[1] 10299   563
 ```
-f. Now I will take a step forward and name the variables according to their original label names, as they are descriptive. Notice the use of the *features* data set that we created in section b; now we use ut to label the variables. 
+f. Now I will take a step forward and name the variables according to their original label names, as they are descriptive. Notice the use of the *features* data set that we created in section b; now we use it to label the variables. 
 ```r
 names<-c("id","class",as.character(features[,2]))
 db<-setNames(db,names)

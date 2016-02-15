@@ -132,5 +132,8 @@ View(data)
 * https://cran.r-project.org/web/packages/dplyr/dplyr.pdf
 * https://www.youtube.com/watch?v=jWjqLW-u3hc&feature=youtu.be
 * https://github.com/justmarkham/dplyr-tutorial/blob/master/dplyr-tutorial.Rmd
+ 
+##NOTE:
+I did this final Project for a previous session of the Getting and Cleaning data course, but this time I am applying to get a certificate. That is why the files appear as created a month ago. 
 
 
